@@ -110,7 +110,7 @@ int main()
             break;
 
         case 4:
-            printf("\nEnter position to insert data:");
+            printf("\nEnter position to insert data:");    
             scanf("%d",&pos);
             printf("\nEnter data to insert:");
             scanf("%d",&d);   
