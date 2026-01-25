@@ -41,7 +41,7 @@ void deletion_end(struct node**p)
     else
     {
         struct node *temp = *p,*prev=NULL;
-        while(temp->next!=NULL)
+        while(temp->next!=NULL)                                                              
         {
             prev=temp;
             temp=temp->next;
