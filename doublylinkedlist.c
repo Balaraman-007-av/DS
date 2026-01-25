@@ -74,10 +74,14 @@ void insertion_pos(struct node **p,int pos,int d)
             temp=temp->next;
             i++;
         }
-        nn->prev = temp;
-        nn->next = temp->next;
-        temp->next=nn;
-        nn->next->prev=nn;
+        if(temp->next==NULL) insertion_end(*p,d);
+        else
+        {
+            nn->prev = temp;
+            nn->next = temp->next;
+            temp->next=nn;
+            nn->next->prev=nn;
+        }
     }
 }
 
