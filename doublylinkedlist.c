@@ -60,7 +60,7 @@ void insertion_pos(struct node **p,int pos,int d)
     struct node *nn = create(d);
     int c=count(*p);
     int i = 1;
-    if(pos<1 || pos>c+1) 
+    if(pos<1 || pos>c) 
     {
         printf("Invalid Position!\n");
         return;
@@ -74,13 +74,80 @@ void insertion_pos(struct node **p,int pos,int d)
             temp=temp->next;
             i++;
         }
-        if(temp->next==NULL) insertion_end(*p,d);
+        if(temp->next==NULL) insertion_end(p,d);
         else
         {
             nn->prev = temp;
             nn->next = temp->next;
             temp->next=nn;
             nn->next->prev=nn;
+        }
+    }
+}
+
+void deletion_beg(struct node **p)
+{
+    if(*p==NULL) printf("Deletion not posible\n");
+    else
+    {
+        struct node *temp=*p;
+        *p=temp->next;
+        if(*p!=NULL)
+        {
+            (*p)->prev=NULL;
+        }
+        free(temp);
+    }
+}
+
+void deletion_end(struct node **p)
+{
+    if(*p==NULL) printf("Deletion not Possible");
+    else
+    {
+        struct node *temp=*p;
+        if(temp->next==NULL)
+        {
+            (*p)=NULL;
+            free(temp);
+        }
+        else
+        {
+            while(temp->next!=NULL)
+            {
+                temp=temp->next;
+            }
+            temp->prev->next=NULL;
+            free(temp);
+        }
+    }
+}
+
+void deletion_pos(struct node **p,int pos)
+{
+    if(*p==NULL) printf("Deletion not posible\n");
+    else
+    {
+        int c = count(*p);
+        if(pos<1 || pos>c)
+        printf("Invalid position\n");
+        else if(pos==1) deletion_beg(p);
+        else
+        {
+            struct node *temp=*p;
+            int i=1;
+            while(i<pos)
+            {
+                temp=temp->next;
+                i++;
+            }
+            if(temp->next==NULL) deletion_end(p);
+            else
+            {
+                temp->prev->next=temp->next;
+                temp->next->prev=temp->prev;
+                free(temp);
+            }
         }
     }
 }
@@ -100,9 +167,9 @@ int main()
 {
     struct node *head=NULL;
     int d,pos,choice=0;
-    while(choice!=5)
+    while(choice!=8)
     {
-        printf("\n------MENU------\n1. Insert at begining\n2. Insert at end\n3. Insert at position\n4. display\n5. Exit");
+        printf("\n------MENU------\n1. Insert at begining\n2. Insert at end\n3. Insert at position\n4. Deletion at begining\n5. Deletion at end\n6. Deletion at position\n7. display\n8. Exit");
         printf("\nEnter your choice:");
         scanf("%d",&choice);
         switch (choice)
@@ -128,10 +195,24 @@ int main()
             break;
         
         case 4:
+            deletion_beg(&head);
+            break; 
+
+        case 5:
+            deletion_end(&head);
+            break;
+
+        case 6:
+            printf("Enter the position to delete element:");
+            scanf("%d",&pos);
+            deletion_pos(&head,pos);
+            break;
+
+        case 7:
             display(head);
             break;
         
-        case 5:
+        case 8:
             printf("\nExisting!\n");
             break;
 
