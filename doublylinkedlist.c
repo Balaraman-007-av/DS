@@ -206,7 +206,7 @@ int main()
             printf("Enter the position to delete element:");
             scanf("%d",&pos);
             deletion_pos(&head,pos);
-            break;
+            break                                                                    ;
 
         case 7:
             display(head);
