@@ -45,7 +45,7 @@ void insertion_beg(struct node **p,int d)
         *p=nn;
     }
 }
-
+    
 void insertion_end(struct node **p, int d)
 {
     struct node *nn = create(d);
