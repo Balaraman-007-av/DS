@@ -6,7 +6,6 @@ struct stack {
     struct stack *next;
 };
 
-// create node
 struct stack *create(int d) {
     struct stack *nn = (struct stack*) malloc(sizeof(struct stack));
     nn->data = d;
@@ -14,14 +13,12 @@ struct stack *create(int d) {
     return nn;
 }
 
-// push at head (top)
 void push(struct stack **p, int d) {
     struct stack *nn = create(d);
     nn->next = *p;
     *p = nn;
 }
 
-// pop top
 void pop(struct stack **p) {
     if (*p == NULL) {
         printf("Stack Underflow\n");
@@ -33,7 +30,6 @@ void pop(struct stack **p) {
     free(temp);
 }
 
-// peek top
 int peek(struct stack *p) {
     if (p == NULL) {
         printf("Stack is Empty\n");
@@ -42,12 +38,10 @@ int peek(struct stack *p) {
     return p->data;
 }
 
-// isEmpty
 int isEmpty(struct stack *p) {
     return p == NULL;
 }
 
-// size
 int size(struct stack *p) {
     int c = 0;
     while (p != NULL) {
@@ -57,7 +51,6 @@ int size(struct stack *p) {
     return c;
 }
 
-// display
 void display(struct stack *p) {
     if (p == NULL) {
         printf("Stack is Empty\n");
