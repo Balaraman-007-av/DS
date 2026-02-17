@@ -26,7 +26,7 @@ void pop(struct stack **p) {
     }
     struct stack *temp = *p;
     printf("%d : Popped\n", temp->data);
-    *p = (*p)->next;
+    *p = temp->next;
     free(temp);
 }
 

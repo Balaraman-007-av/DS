@@ -117,7 +117,7 @@ void deletion_end(struct node **p)
     if(*p==NULL) printf("Deletion not Possible");
     else
     {
-        struct node *temp=*p;
+        struct node *temp;
         if(temp->next==*p)
         {
             (*p)=NULL;
@@ -125,10 +125,7 @@ void deletion_end(struct node **p)
         }
         else
         {
-            while(temp->next!=*p)
-            {
-                temp=temp->next;
-            }
+            temp=(*p)->prev;
             temp->prev->next=*p;
             (*p)->prev=temp->prev;
             free(temp);
