@@ -43,7 +43,11 @@ void insertion_pos(struct node **p,int pos, int d)
 {
     struct node *nn=create(d);
     struct node *temp=*p;
+    int c = count(*p);
+    if(pos<1 || pos>c+1) return;
     if(temp==NULL) temp=nn;
+    else if(pos==1) insertion_beg(p,d);
+    else if(pos==c) insertion_end(p,d);
     else
     {
         int i=1;
@@ -69,7 +73,7 @@ void display(struct node *p)
     printf("NULL\n");
 }
 
-void count(struct node *p)
+int count(struct node *p)
 {
     int count=0;
     struct node *temp=p;
@@ -78,8 +82,9 @@ void count(struct node *p)
         count++;
         temp=temp->next;
     }
-    printf("\nNumber of nodes: %d\n",count);
+    return 0;
 }
+
 int main()
 {
     struct node *head=NULL;
