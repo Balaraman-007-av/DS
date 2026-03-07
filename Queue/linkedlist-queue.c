@@ -33,6 +33,10 @@ void deqeue(struct queue **p)
     {
         printf("Queue is Empty!\n");
     }
+    if((*p)->next==NULL)
+    {
+        *p=NULL;
+    }
     else
     {
         struct queue *temp=*p,*prev=NULL;
@@ -68,7 +72,7 @@ void display(struct queue *p)
 int main()
 {
     struct queue *head=NULL;
-    int choice,d;
+    int choice=0,d;
     while(choice!=4)
     {
         printf("\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n");
